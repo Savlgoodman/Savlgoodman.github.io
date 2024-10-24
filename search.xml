@@ -4,56 +4,23 @@
   
     
     <entry>
-      <title>test</title>
-      <link href="/2024/10/24/test/"/>
-      <url>/2024/10/24/test/</url>
+      <title>第一篇文章</title>
+      <link href="/2024/10/24/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+      <url>/2024/10/24/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
       
-        <content type="html"><![CDATA[<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_cookie</span>():</span><br><span class="line">  <span class="keyword">try</span>:</span><br><span class="line">​    \<span class="comment"># 尝试打开文件</span></span><br><span class="line">​    <span class="keyword">with</span> <span class="built_in">open</span>(COOKIEPATH, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">​      raw_cookie = file.read()</span><br><span class="line">  <span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">​    <span class="built_in">print</span>(<span class="string">&quot;文件未找到&quot;</span>)</span><br><span class="line">​    raw_cookie = <span class="built_in">input</span>(<span class="string">&quot;请输入cookie:&quot;</span>)</span><br><span class="line">  <span class="keyword">except</span> PermissionError:</span><br><span class="line">​    <span class="built_in">print</span>(<span class="string">&quot;没有权限访问文件&quot;</span>)</span><br><span class="line">​    raw_cookie = <span class="built_in">input</span>(<span class="string">&quot;请输入cookie:&quot;</span>)</span><br><span class="line">  <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">​    <span class="built_in">print</span>(<span class="string">f&quot;发生其他错误: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">​    raw_cookie = <span class="built_in">input</span>(<span class="string">&quot;请输入cookie:&quot;</span>)</span><br><span class="line">  raw_cookie_list = raw_cookie.split(<span class="string">&quot;; &quot;</span>)</span><br><span class="line">  <span class="keyword">for</span> item <span class="keyword">in</span> raw_cookie_list:</span><br><span class="line">​    key = item.split(<span class="string">&quot;=&quot;</span>)[<span class="number">0</span>]</span><br><span class="line">​    value = item.split(<span class="string">&quot;=&quot;</span>)[<span class="number">1</span>]</span><br><span class="line">​    cookies[key] = value</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br></pre></td></tr></table></figure><p>![](..&#x2F;pic&#x2F;2024-10-24&#x2F;cover.jpg</p><p>main main mian</p><p><img src="/../pic/2024-10-24/cover.jpg" alt="cover"></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
       
       <categories>
           
-          <category> 测试分类 </category>
+          <category> 杂文 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 测试标签 </tag>
-            
-            <tag> test </tag>
-            
-            <tag> owwqwoq </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>testyyy</title>
-      <link href="/2024/10/24/test-%E5%89%AF%E6%9C%AC/"/>
-      <url>/2024/10/24/test-%E5%89%AF%E6%9C%AC/</url>
-      
-        <content type="html"><![CDATA[<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_cookie</span>():</span><br><span class="line">  <span class="keyword">try</span>:</span><br><span class="line">​    \<span class="comment"># 尝试打开文件</span></span><br><span class="line">​    <span class="keyword">with</span> <span class="built_in">open</span>(COOKIEPATH, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">​      raw_cookie = file.read()</span><br><span class="line">  <span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">​    <span class="built_in">print</span>(<span class="string">&quot;文件未找到&quot;</span>)</span><br><span class="line">​    raw_cookie = <span class="built_in">input</span>(<span class="string">&quot;请输入cookie:&quot;</span>)</span><br><span class="line">  <span class="keyword">except</span> PermissionError:</span><br><span class="line">​    <span class="built_in">print</span>(<span class="string">&quot;没有权限访问文件&quot;</span>)</span><br><span class="line">​    raw_cookie = <span class="built_in">input</span>(<span class="string">&quot;请输入cookie:&quot;</span>)</span><br><span class="line">  <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">​    <span class="built_in">print</span>(<span class="string">f&quot;发生其他错误: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">​    raw_cookie = <span class="built_in">input</span>(<span class="string">&quot;请输入cookie:&quot;</span>)</span><br><span class="line">  raw_cookie_list = raw_cookie.split(<span class="string">&quot;; &quot;</span>)</span><br><span class="line">  <span class="keyword">for</span> item <span class="keyword">in</span> raw_cookie_list:</span><br><span class="line">​    key = item.split(<span class="string">&quot;=&quot;</span>)[<span class="number">0</span>]</span><br><span class="line">​    value = item.split(<span class="string">&quot;=&quot;</span>)[<span class="number">1</span>]</span><br><span class="line">​    cookies[key] = value</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br></pre></td></tr></table></figure><p>![](..&#x2F;pic&#x2F;2024-10-24&#x2F;cover.jpg</p><p>main main mian</p><p>![cover](..&#x2F;pic&#x2F;2024-10-24&#x2F;cover.jpg</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 测试分类 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 测试标签 </tag>
-            
-            <tag> test </tag>
-            
-            <tag> owwqwoq </tag>
+            <tag> 杂文 </tag>
             
         </tags>
       
@@ -91,7 +58,7 @@
     
     
     <entry>
-      <title>categories</title>
+      <title>看看有些什么宝贝</title>
       <link href="/categories/index.html"/>
       <url>/categories/index.html</url>
       
@@ -102,7 +69,7 @@
     
     
     <entry>
-      <title>552644</title>
+      <title>Good Friends</title>
       <link href="/link/index.html"/>
       <url>/link/index.html</url>
       
@@ -113,7 +80,7 @@
     
     
     <entry>
-      <title>tags</title>
+      <title>一些小玩意们</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
       
