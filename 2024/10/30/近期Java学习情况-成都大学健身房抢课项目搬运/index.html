@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>近期Java学习情况--成都大学健身房抢课项目搬运 | GoodmanLuo的小站</title><meta name="author" content="Savlgoodman"><meta name="copyright" content="Savlgoodman"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言我家大儿之前苦于在成都大学开设的免费健身房抢不到预约名额，于是给他写了一个抢课的爬虫。最先是使用Python写的一个简易的爬虫程序，后来准备学Java之后决定把这个项目给搬运过来，当一个Java项目练练手。 开源项目链接：https:&#x2F;&#x2F;github.com&#x2F;Savlgoodman&#x2F;CDUgym 已发布可执行Jar包：https:&#x2F;&#x2F;github.com&#x2F;Savlgoodman&#x2F;CDUgym&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="近期Java学习情况--成都大学健身房抢课项目搬运">
+<meta property="og:url" content="https://savlgoodman.github.io/2024/10/30/%E8%BF%91%E6%9C%9FJava%E5%AD%A6%E4%B9%A0%E6%83%85%E5%86%B5-%E6%88%90%E9%83%BD%E5%A4%A7%E5%AD%A6%E5%81%A5%E8%BA%AB%E6%88%BF%E6%8A%A2%E8%AF%BE%E9%A1%B9%E7%9B%AE%E6%90%AC%E8%BF%90/index.html">
+<meta property="og:site_name" content="GoodmanLuo的小站">
+<meta property="og:description" content="前言我家大儿之前苦于在成都大学开设的免费健身房抢不到预约名额，于是给他写了一个抢课的爬虫。最先是使用Python写的一个简易的爬虫程序，后来准备学Java之后决定把这个项目给搬运过来，当一个Java项目练练手。 开源项目链接：https:&#x2F;&#x2F;github.com&#x2F;Savlgoodman&#x2F;CDUgym 已发布可执行Jar包：https:&#x2F;&#x2F;github.com&#x2F;Savlgoodman&#x2F;CDUgym&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://savlgoodman.github.io/img/cover1.png">
+<meta property="article:published_time" content="2024-10-30T10:54:03.000Z">
+<meta property="article:modified_time" content="2024-10-30T12:01:43.685Z">
+<meta property="article:author" content="Savlgoodman">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://savlgoodman.github.io/img/cover1.png"><link rel="shortcut icon" href="/img/icon.png"><link rel="canonical" href="https://savlgoodman.github.io/2024/10/30/%E8%BF%91%E6%9C%9FJava%E5%AD%A6%E4%B9%A0%E6%83%85%E5%86%B5-%E6%88%90%E9%83%BD%E5%A4%A7%E5%AD%A6%E5%81%A5%E8%BA%AB%E6%88%BF%E6%8A%A2%E8%AF%BE%E9%A1%B9%E7%9B%AE%E6%90%AC%E8%BF%90/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '近期Java学习情况--成都大学健身房抢课项目搬运',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-30 20:01:43'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/background1.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://q1.qlogo.cn/g?b=qq&amp;nk=2049589768&amp;s=640" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover1.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://q1.qlogo.cn/g?b=qq&amp;nk=2049589768&amp;s=640" alt="Logo"><span class="site-name">GoodmanLuo的小站</span></a><a class="nav-page-title" href="/"><span class="site-name">近期Java学习情况--成都大学健身房抢课项目搬运</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">近期Java学习情况--成都大学健身房抢课项目搬运</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-30T10:54:03.000Z" title="发表于 2024-10-30 18:54:03">2024-10-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-30T12:01:43.685Z" title="更新于 2024-10-30 20:01:43">2024-10-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我家大儿之前苦于在成都大学开设的免费健身房抢不到预约名额，于是给他写了一个抢课的爬虫。最先是使用Python写的一个简易的爬虫程序，后来准备学Java之后决定把这个项目给搬运过来，当一个Java项目练练手。</p>
+<p>开源项目链接：<a target="_blank" rel="noopener" href="https://github.com/Savlgoodman/CDUgym">https://github.com/Savlgoodman/CDUgym</a></p>
+<p>已发布可执行Jar包：<a target="_blank" rel="noopener" href="https://github.com/Savlgoodman/CDUgym/releases">https://github.com/Savlgoodman/CDUgym/releases</a></p>
+<h1 id="一-项目分析"><a href="#一-项目分析" class="headerlink" title="一.项目分析"></a>一.项目分析</h1><h4 id="1-分析我的Python代码"><a href="#1-分析我的Python代码" class="headerlink" title="1.分析我的Python代码"></a>1.分析我的Python代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> keyboard</span><br><span class="line"></span><br><span class="line">DIRT_PATH = os.path.dirname(os.path.abspath(__file__))</span><br><span class="line"><span class="comment"># LOGPATH = DIRT_PATH + r&quot;\log.txt&quot;</span></span><br><span class="line">CURSEPAGEPATH = DIRT_PATH + <span class="string">r&quot;\cursepage.txt&quot;</span></span><br><span class="line">BOOKPAGEPATH = DIRT_PATH + <span class="string">r&quot;\bookpage.txt&quot;</span></span><br><span class="line">COOKIEPATH = DIRT_PATH + <span class="string">r&quot;\cookie.txt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>(<span class="params">a, b, c, d, e</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;程序开始运行，按 Esc 键退出循环&quot;</span>)</span><br><span class="line">    total_times = <span class="number">0</span></span><br><span class="line">    url_date_pre = <span class="string">&quot;https://www.styd.cn/m/e74abd6e/default/search?date=&quot;</span></span><br><span class="line">    url_date_next = <span class="string">&quot;&amp;shop_id=612773420&amp;type=1&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 函数区 开始 function start</span></span><br><span class="line">    <span class="comment"># 获取课程号</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">find_curse_id</span>(<span class="params">date</span>):</span><br><span class="line">        url1 = url_date_pre + date + url_date_next</span><br><span class="line">        date_data1 = <span class="string">&quot;date=&quot;</span> + date + <span class="string">&quot;&amp;shop_id=612773420&amp;type=1&quot;</span></span><br><span class="line"><span class="comment">########</span></span><br><span class="line"><span class="comment">#中间省略一万行</span></span><br><span class="line"><span class="comment">########</span></span><br><span class="line">                                <span class="built_in">print</span>(<span class="string">&quot;无课或满了  正在监听中&quot;</span>)</span><br><span class="line">                <span class="comment"># code area end</span></span><br><span class="line">                time.sleep(inval_time)  <span class="comment"># 设置循环间隔</span></span><br><span class="line">                total_times += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> total_times &gt;= MAX_TIMES:</span><br><span class="line">                    running = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;程序被手动中断&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 函数区 结束 function end</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 程序入口</span></span><br><span class="line">    search_loop(a, b, c, d, e)  <span class="comment"># 日期 课程关键词 课程时间关键词 最大询问次数 循环间隔</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;程序已退出&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以看Python写得是相当的屎山，如果需要看一下Python的源代码可以移步到我的下载中心去下载查看学习。</p>
+<p>我的Python项目虽然只有一个py文件，但是其内部主要含有一些基本函数：</p>
+<p>1.从目录的cookie.txt中获取用户cookie。(是的，需要用户手动输入)</p>
+<p>2.定义了一个Curse_Info类，用于存储需要抢课的课程的信息。</p>
+<p>3.由用户输入的指定日期中，循环访问该日期下的网页。该网页存在三种情况：①当日课程未发布；②当日课程已发布，目标课程未满；③当日课程已发布，目标课程已满。当出现①和③的情况的时候，需要继续循环等待目标课程的出现或者有人退课。</p>
+<p><img src="/../pic/2024-10-30/pic-book_page.png" alt="1"></p>
+<p>如图在这一天内发布了四个课程，我们需要的是晚上的健身中心的课程。</p>
+<p>4.从课程目录界面获取目标课程的信息：课程的编号</p>
+<p><img src="/../pic/2024-10-30/curse_id.png" alt="1"></p>
+<p>如图可以找到在response中的course_link前的一个课程链接，里面有我们需要的课程id。当然，如果课程已满，此处的链接是javascript:alert(‘预约已爆棚，下次请赶早~’)</p>
+<p>5.通过课程id，前往课程详情的页面获取预约所需要的元素：</p>
+<p>我使用了正则表达式来搜索所需要的用户身份信息和课程信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">find_card_id</span>(<span class="params">text</span>):</span><br><span class="line">        meber_card_id = <span class="string">&quot;114514&quot;</span></span><br><span class="line">        card_cat_id = <span class="string">&quot;114514&quot;</span></span><br><span class="line">        curse_id = <span class="string">&quot;114514&quot;</span></span><br><span class="line">        Return_List = [</span><br><span class="line">            <span class="string">&quot;114514&quot;</span>,</span><br><span class="line">            <span class="string">&quot;114514&quot;</span>,</span><br><span class="line">            <span class="string">&quot;114514&quot;</span>,</span><br><span class="line">        ]  <span class="comment"># member_card_id  card_cat_id  class_id</span></span><br><span class="line">        pre_str = <span class="string">r&#x27;card_id=&quot;&#x27;</span></span><br><span class="line">        end_str = <span class="string">r&#x27;&quot;&#x27;</span></span><br><span class="line">        pattern = re.<span class="built_in">compile</span>(<span class="string">f&quot;<span class="subst">&#123;re.escape(pre_str)&#125;</span>(.*?)<span class="subst">&#123;end_str&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">match</span> = pattern.search(text)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">match</span>:</span><br><span class="line">            meber_card_id = <span class="keyword">match</span>.group(<span class="number">1</span>)  <span class="comment"># 获取member_card_id</span></span><br><span class="line">        pre_str = <span class="string">r&#x27;cat_id=&quot;&#x27;</span></span><br><span class="line">        pattern = re.<span class="built_in">compile</span>(<span class="string">f&quot;<span class="subst">&#123;re.escape(pre_str)&#125;</span>(.*?)<span class="subst">&#123;end_str&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">match</span> = pattern.search(text)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">match</span>:</span><br><span class="line">            card_cat_id = <span class="keyword">match</span>.group(<span class="number">1</span>)  <span class="comment"># 获取card_cat_id</span></span><br><span class="line">        pre_str = <span class="string">r&#x27;course_id&quot; value=&quot;&#x27;</span></span><br><span class="line">        pattern = re.<span class="built_in">compile</span>(<span class="string">f&quot;<span class="subst">&#123;re.escape(pre_str)&#125;</span>(.*?)<span class="subst">&#123;end_str&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">match</span> = pattern.search(text)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">match</span>:</span><br><span class="line">            curse_id = <span class="keyword">match</span>.group(<span class="number">1</span>)  <span class="comment"># 获取curse_id</span></span><br><span class="line">        Return_List[<span class="number">0</span>] = meber_card_id</span><br><span class="line">        Return_List[<span class="number">1</span>] = card_cat_id</span><br><span class="line">        Return_List[<span class="number">2</span>] = curse_id</span><br><span class="line">        <span class="keyword">return</span> Return_List</span><br></pre></td></tr></table></figure>
+
+<p>6.下单预约课程</p>
+<p>通过实践发现下单操作是通过访问<a target="_blank" rel="noopener" href="https://www.styd.cn/m/e74abd6e/course/order_confirm%EF%BC%8C%E5%B9%B6%E4%BC%A0%E8%BE%93%E4%B8%80%E4%B8%AA%E8%AE%A2%E5%8D%95%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%85%B6%E4%B8%AD%E5%8C%85%E6%8B%AC%E8%AF%BE%E7%A8%8Bid%EF%BC%8C%E5%AD%A6%E6%A0%A1id%EF%BC%8C%E4%BC%9A%E5%91%98%E5%8D%A1id%E7%AD%89%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%89%80%E4%BB%A5%E6%88%91%E9%80%9A%E8%BF%87">https://www.styd.cn/m/e74abd6e/course/order_confirm，并传输一个订单信息，其中包括课程id，学校id，会员卡id等信息，所以我通过</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">book_curse</span>(<span class="params">class_id</span>):</span><br><span class="line">    <span class="comment"># https://www.styd.cn/m/e74abd6e/course/order_confirm</span></span><br><span class="line">    order_url = <span class="string">r&quot;https://www.styd.cn/m/e74abd6e/course/order_confirm&quot;</span></span><br><span class="line">    book_url_raw = <span class="string">r&quot;https://www.styd.cn/m/e74abd6e/course/order?id=&quot;</span></span><br><span class="line">    book_url = book_url_raw + class_id</span><br><span class="line">    book_page_res = requests.get(book_url, cookies=cookies, headers=header)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(BOOKPAGEPATH, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(book_page_res.text)</span><br><span class="line">        id_list = find_card_id(book_page_res.text)</span><br><span class="line">        <span class="comment"># 以下的class_id为预约课程的id, curse_id为课程(比如游泳还是健身之类的区分)的id</span></span><br><span class="line">        order_data = <span class="string">f&quot;member_card_id=<span class="subst">&#123;id_list[<span class="number">0</span>]&#125;</span>&amp;card_cat_id=<span class="subst">&#123;id_list[<span class="number">1</span>]&#125;</span>&amp;course_id=<span class="subst">&#123;id_list[<span class="number">2</span>]&#125;</span>&amp;class_id=<span class="subst">&#123;class_id&#125;</span>&amp;note=&amp;time_from_stamp=0&amp;time_to_stamp=0&amp;quantity=1&amp;is_waiting=&quot;</span></span><br><span class="line">        <span class="comment"># 获取下单前数据完成 ↑↑</span></span><br><span class="line">        order_res = requests.get(</span><br><span class="line">            order_url, data=order_data, cookies=cookies, headers=header</span><br><span class="line">        )</span><br><span class="line">        order_res_text_json = json.loads(order_res.text)</span><br><span class="line">        <span class="built_in">print</span>(order_res_text_json[<span class="string">&quot;msg&quot;</span>])</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;order success&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这个函数来实现了下单请求</p>
+<h4 id="2-构建Java代码项目结构"><a href="#2-构建Java代码项目结构" class="headerlink" title="2.构建Java代码项目结构"></a>2.构建Java代码项目结构</h4><p>我的项目结构如下：</p>
+<p><img src="/../pic/2024-10-30/project_structure.png" alt="1"></p>
+<p>由于苦于不想面对黑框框，这里简单的用JavaSwing写了一个简单的窗体。主要分为了两个窗体，一个是登录界面，登录之后就可以进入预约面板。整个项目实现了UI与功能分离，主要功能的实现通Main包内的MainAPI中的函数进行调用，不过这里只实现了单次访问网页，查找是否有剩余课程，如果有就预约课程。为了方便前后通讯，MainAPI内函数的返回值为预约情况，循环部分写到了BookFrame中，让其中的文本框更好的实现日志输出。</p>
+<h4 id="3-实现类与对象的思想"><a href="#3-实现类与对象的思想" class="headerlink" title="3.实现类与对象的思想"></a>3.实现类与对象的思想</h4><p>由于Java没有方便的requests库，我便随手写了一个我自己的”request”类：</p>
+<p>在这个类中，需要先new一个request对象，然后对这个对象实现一些访问的方法，这个有三种构建方法：url，header，cookie，method方法；带数据的构造方法：url，header，cookie，method，data；单url构造方法：获取用户头像时使用。</p>
+<p>这里举一个带data发包的方法的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">requestWithData</span><span class="params">()</span> <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">    <span class="type">URL</span> <span class="variable">url1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">URL</span>(url);</span><br><span class="line">    <span class="type">HttpURLConnection</span> <span class="variable">conn</span> <span class="operator">=</span> (HttpURLConnection) url1.openConnection();</span><br><span class="line">    conn.setRequestMethod(Method);</span><br><span class="line">    conn.setRequestProperty(<span class="string">&quot;User-Agent&quot;</span>, UserAgent);</span><br><span class="line">    conn.setRequestProperty(<span class="string">&quot;Cookie&quot;</span>,Cookie);</span><br><span class="line">    conn.setDoOutput(<span class="literal">true</span>);</span><br><span class="line">    conn.getOutputStream().write(data.getBytes());</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(conn.getInputStream()));</span><br><span class="line">    String inputLine;</span><br><span class="line">    <span class="type">StringBuffer</span> <span class="variable">response</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">    <span class="keyword">while</span> ((inputLine = in.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">        response.append(inputLine);</span><br><span class="line">    &#125;</span><br><span class="line">    in.close();</span><br><span class="line">    <span class="keyword">return</span> response.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如此便简单的获取了url 的response。</p>
+<p>在获取课程信息的方法里面，同样使用了正则表达式来查找各个课程的状态和id，然后进入目标课程检测，当检测到目标课程有空位时，便构造BookCurse类，传入Curse_id来进行访问课程详情页获取下单所需数据。</p>
+<h1 id="二-项目简要"><a href="#二-项目简要" class="headerlink" title="二.项目简要"></a>二.项目简要</h1><p>1.主界面截图</p>
+<p><img src="/../pic/2024-10-30/mainframe.png" alt="1"></p>
+<p>2.登录后截图</p>
+<p><img src="/../pic/2024-10-30/mainframelogin.png" alt="1"></p>
+<p>3.抢课界面</p>
+<p><img src="/../pic/2024-10-30/bookframe.png" alt="1"></p>
+<p>4.抢课测试</p>
+<p><img src="/../pic/2024-10-30/booktest.png" alt="1"></p>
+<h1 id="三-项目总结"><a href="#三-项目总结" class="headerlink" title="三.项目总结"></a>三.项目总结</h1><p>随便水了一篇文章，具体没怎么细讲我的项目，但是代码很简单都看得懂，现在在攻克手机号登录获取cookie的问题，并添加更多的功能。</p>
+<p>TODO：</p>
+<p>1.添加用户选择界面，轻松切换不同的用户</p>
+<p>2.添加手机号登录</p>
+<p>3.试图将抢课程序挂载到服务器中，无需开启电脑，随时随地查看抢课状态</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://savlgoodman.github.io">Savlgoodman</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://savlgoodman.github.io/2024/10/30/%E8%BF%91%E6%9C%9FJava%E5%AD%A6%E4%B9%A0%E6%83%85%E5%86%B5-%E6%88%90%E9%83%BD%E5%A4%A7%E5%AD%A6%E5%81%A5%E8%BA%AB%E6%88%BF%E6%8A%A2%E8%AF%BE%E9%A1%B9%E7%9B%AE%E6%90%AC%E8%BF%90/">https://savlgoodman.github.io/2024/10/30/%E8%BF%91%E6%9C%9FJava%E5%AD%A6%E4%B9%A0%E6%83%85%E5%86%B5-%E6%88%90%E9%83%BD%E5%A4%A7%E5%AD%A6%E5%81%A5%E8%BA%AB%E6%88%BF%E6%8A%A2%E8%AF%BE%E9%A1%B9%E7%9B%AE%E6%90%AC%E8%BF%90/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://savlgoodman.github.io" target="_blank">GoodmanLuo的小站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a></div><div class="post-share"><div class="social-share" data-image="/img/cover1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/10/25/%E8%AE%A1%E5%88%92%E6%B8%85%E5%8D%95-%E7%9B%91%E7%9D%A3%E8%87%AA%E5%B7%B1/" title="计划清单--监督自己"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">计划清单--监督自己</div></div><div class="info-2"><div class="info-item-1">这是一份计划清单 计划列表：😺  买个服务器，给我的博客迁移到服务器上并在服务器上部署好评论功能。  学习Java基础内容。  学习Fabric-api准备开发Minecraft fabric模组。  学习git的使用方法。  学习SolidWorks建模。  学习STM32单片机以及其内容。  学习STM32后完成未完成的平衡小车的开发。  学习PCB绘制和设计，电路设计。  完成未完成的电磁炮计划。  🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰 </div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://q1.qlogo.cn/g?b=qq&amp;nk=2049589768&amp;s=640" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Savlgoodman</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Savlgoodman"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Savlgoodman" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to my blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">一.项目分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%86%E6%9E%90%E6%88%91%E7%9A%84Python%E4%BB%A3%E7%A0%81"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">1.分析我的Python代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9E%84%E5%BB%BAJava%E4%BB%A3%E7%A0%81%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">2.构建Java代码项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E7%8E%B0%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%80%9D%E6%83%B3"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">3.实现类与对象的思想</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E9%A1%B9%E7%9B%AE%E7%AE%80%E8%A6%81"><span class="toc-number">3.</span> <span class="toc-text">二.项目简要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">三.项目总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/10/30/%E8%BF%91%E6%9C%9FJava%E5%AD%A6%E4%B9%A0%E6%83%85%E5%86%B5-%E6%88%90%E9%83%BD%E5%A4%A7%E5%AD%A6%E5%81%A5%E8%BA%AB%E6%88%BF%E6%8A%A2%E8%AF%BE%E9%A1%B9%E7%9B%AE%E6%90%AC%E8%BF%90/" title="近期Java学习情况--成都大学健身房抢课项目搬运"><img src="/img/cover1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="近期Java学习情况--成都大学健身房抢课项目搬运"/></a><div class="content"><a class="title" href="/2024/10/30/%E8%BF%91%E6%9C%9FJava%E5%AD%A6%E4%B9%A0%E6%83%85%E5%86%B5-%E6%88%90%E9%83%BD%E5%A4%A7%E5%AD%A6%E5%81%A5%E8%BA%AB%E6%88%BF%E6%8A%A2%E8%AF%BE%E9%A1%B9%E7%9B%AE%E6%90%AC%E8%BF%90/" title="近期Java学习情况--成都大学健身房抢课项目搬运">近期Java学习情况--成都大学健身房抢课项目搬运</a><time datetime="2024-10-30T10:54:03.000Z" title="发表于 2024-10-30 18:54:03">2024-10-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/25/%E8%AE%A1%E5%88%92%E6%B8%85%E5%8D%95-%E7%9B%91%E7%9D%A3%E8%87%AA%E5%B7%B1/" title="计划清单--监督自己">计划清单--监督自己</a><time datetime="2024-10-25T03:38:56.000Z" title="发表于 2024-10-25 11:38:56">2024-10-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/10/24/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="第一篇文章"><img src="/pic/2024-10-24/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一篇文章"/></a><div class="content"><a class="title" href="/2024/10/24/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="第一篇文章">第一篇文章</a><time datetime="2024-10-24T06:25:10.000Z" title="发表于 2024-10-24 14:25:10">2024-10-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/cover1.png);"><div id="footer-wrap"><div class="copyright">&copy;2024 By Savlgoodman</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+
+  const initWaline = (Fn) => {
+    const waline = Fn(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-comment-9jeb7rujw-savlgoodmans-projects.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+
+    const destroyWaline = () => {
+      waline.destroy()
+    }
+
+    btf.addGlobalFn('pjaxSendOnce', destroyWaline, 'destroyWaline')
+  }
+
+  const loadWaline = () => {
+    if (initFn) initWaline(initFn)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="在此处搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
